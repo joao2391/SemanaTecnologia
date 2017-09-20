@@ -45,9 +45,10 @@ namespace TechWeek2017.Controllers {
             if (ModelState.IsValid) {
                 db.Alunos.Add(aluno);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return RedirectToAction("Create", "Tempo");
             }
-
+            //aluno
             return View(aluno);
         }
 

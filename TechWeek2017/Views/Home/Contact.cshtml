@@ -1,17 +1,21 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contato";
+    ViewBag.Message = "TESTE";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="jumbotron">
+    <h2>@ViewBag.Title</h2>
+    <h3>@ViewBag.Message</h3>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <address>
+        FATEC Prof. João Mod<br />
+        Guaratinguetá - SP<br />
+        <abbr title="Phone">Telefone:</abbr>
+        3126-2643
+    </address>
+
+    <address>
+        <a href="http://www.fatecguaratingueta.edu.br/">FATEC Guaratinguetá</a><br />
+        @*<strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>*@
+    </address>
+</div>

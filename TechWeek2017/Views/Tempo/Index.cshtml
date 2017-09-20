@@ -1,45 +1,54 @@
 ﻿@model IEnumerable<TechWeek2017.Models.Tempo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Ranking";
 }
 
-<h2>Index</h2>
+<div class="jumbotron">
+    <h2 class="text-center text-primary">Ranking</h2>
+ 
+    @*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+    <table class="table">
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Aluno.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aluno.Curso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+             
+            </th>
+           
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Aluno.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Evento.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Time)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model) {
+            <tr>
+                
+                <td>
+                    
+                    @Html.DisplayFor(modelItem => item.Aluno.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aluno.Curso)
+                </td>
+                <td>
+                    @TimeSpan.FromTicks(item.Time).ToString()
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Aluno.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Evento.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TempoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TempoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TempoId })
-        </td>
-    </tr>
-}
+                </td>
+                
+@*
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.TempoId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.TempoId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.TempoId })
+    </td>*@
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

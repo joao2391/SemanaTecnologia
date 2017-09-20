@@ -1,61 +1,112 @@
 ﻿@model TechWeek2017.Models.Tempo
+@using System.IO.Ports
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "";
+
 }
 
-<h2>Create</h2>
+<h2></h2>
 
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
+    @Scripts.Render("~/bundles/jquery")
+    <div class="form-horizontal jumbotron">
+        @*<h4>Tempo</h4>*@
 
-    <div class="form-horizontal">
-        <h4>Tempo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.AlunoId, "AlunoId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AlunoId, "Aluno:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("AlunoId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("AlunoId", null, "Selecione", htmlAttributes: new { @class = "form-control selectpicker", @data_live_search = "true" })
                 @Html.ValidationMessageFor(model => model.AlunoId, "", new { @class = "text-danger" })
             </div>
         </div>
-
+       
         <div class="form-group">
-            @Html.LabelFor(model => model.EventoId, "EventoId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EventoId, "Evento:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("EventoId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EventoId, "", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(model => model.EventoId, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
-            </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+        @*@{ 
+            SerialPort ardo;
+            ardo = new SerialPort();
+            ardo.PortName = "COM5";
+            ardo.BaudRate = 9600;
+
+            ardo.Open();
+
+            string x = ardo.ReadLine();
+            //ardo.Close();
+            ardo.DataReceived += new SerialDataReceivedEventHandler(spSimulador_DataReceived);
+
+
+
+
+ public void spSimulador_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e) {
+                //Invoke(new Action(() => {
+                //    var dados = spSimulador.ReadExisting();
+                //    memDadosRecebidos.Text = "PortaAvulsa => " + dados + memDadosRecebidos.Text;
+                //}));
+
+               x= ardo.ReadLine();
+
+            }
+        }*@
+
+
+        <input type="text" id="inputDatabaseName" hidden />
+        <input type="text" id="inputDatabaseName2" hidden />
+
+        <div id="contenedor" hidden>
+
+            <div class="reloj" id="Horas">00</div>
+            <div class="reloj" id="Minutos">:00</div>
+            <div class="reloj" id="Segundos">:00</div>
+            <div class="reloj" id="Centesimas">:00</div>
+            <a href="javascript:inicio();" id="inicio">Start</a>
+            <a href="javascript:parar();" id="parar">Parar</a>
+            <a href="javascript:inicio();" id="continuar">Continuar</a>
+            <a href="javascript:reinicio();" id="reinicio">Reiniciar</a>
+
+
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Scripts.Render("~/bundles/log")
+        <script type="text/javascript">
+          
+                
+        </script>
+        <div class="row">
+
+            <div class="col-md-2"></div>
             <div class="col-md-10">
-                @{  System.IO.Ports.SerialPort ardo = new System.IO.Ports.SerialPort();
-                    //ardo.PortName = "COM5";
-                    //ardo.BaudRate = 9600;
-                    //ardo.Open();
-                    //string x =ardo.ReadLine().ToString();
-                    }
-                <label name="time"></label>
+
+
+                <input type="text" name="tempo1" id="tempo1" style="font-size:120px !important; height:130px !important; width:100% !important; border:none; -webkit-box-shadow:none; background-color:#eeeeee" value="00:00:00:00" class="text form-control" />
+
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Inserir" class="btn btn-primary" />
             </div>
         </div>
     </div>
-                    }
+            }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
