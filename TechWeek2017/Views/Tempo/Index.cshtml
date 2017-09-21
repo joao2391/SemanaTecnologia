@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TechWeek2017.Models.Tempo>
+﻿
 
 @{
     ViewBag.Title = "Ranking";
@@ -6,48 +6,49 @@
 
 <div class="jumbotron">
     <h2 class="text-center text-primary">Ranking</h2>
- 
+
     @*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
     <table class="table">
         <tr>
-           
+
             <th>
-                @Html.DisplayNameFor(model => model.Aluno.Nome)
+                Nome
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Aluno.Curso)
+                Curso
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Time)
-             
+                Tempo
             </th>
-           
+
         </tr>
 
-        @foreach (var item in Model) {
+        @foreach (var item in ViewBag.tempo) {
+           // foreach (var x in item) {
             <tr>
-                
-                <td>
-                    
-                    @Html.DisplayFor(modelItem => item.Aluno.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Aluno.Curso)
-                </td>
-                <td>
-                    @TimeSpan.FromTicks(item.Time).ToString()
 
+                <td>
+
+                    @item.ToString().Split(',')[1].Split('=')[1]
                 </td>
-                
-@*
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.TempoId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.TempoId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.TempoId })
-    </td>*@
+                <td>
+                    @item.ToString().Split(',')[2].Split('=')[1]
+                </td>
+                <td>
+                    @*@item.ToString().Split(',')[3].Split('=')[1].Split('}')[0].Trim()*@
+                    @TimeSpan.FromTicks(Convert.ToInt64(item.ToString().Split(',')[3].Split('=')[1].Split('}')[0].Trim())).ToString()
+                </td>
+
+                @*
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TempoId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.TempoId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TempoId })
+                    </td>*@
             </tr>
+            //}
         }
 
     </table>

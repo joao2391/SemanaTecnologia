@@ -17,8 +17,14 @@ namespace TechWeek2017.Controllers {
 
         // GET: Tempo
         public ActionResult Index() {
-            var tempos = db.Tempos.Include(t=> t.Aluno).Include(t=> t.Evento).OrderBy(x => x.Time).Take(10);
+            var tempos = db.Tempos.Include(t=> t.Aluno).Include(t=> t.Evento).GroupBy(g=> g.AlunoId).Select(
+                gb=> new {
+                    AlunoId = gb.Key,
+                    Nome =  gb.Select(t=> t.Aluno.Nome).FirstOrDefault(),
+                    Curso = gb.Select(t => t.Aluno.Curso).FirstOrDefault(),
+                    Time = gb.Min(m=> m.Time)}).OrderBy(x => x.Time).Take(10);
             //var tempos = db.Tempos.GroupBy(t => t.AlunoId).Select(gb => new { Id = gb.Key, Time = gb.Min(t => t.Time) }).OrderBy(t => t.Time);
+            ViewBag.tempo = tempos.ToList();
             return View(tempos.ToList());
         }
 
