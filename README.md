@@ -12,7 +12,7 @@ Cabos e fios para a parte elétrica do projeto.
 
 
                                                   Sobre o projeto:
-O projeto consiste em utilizar a empilhadeira de controle remoto para retirar o palete de uma prateleira(Pa) e levá-lo a outra(Pb). Quando retirado o palete da primeira prateleira(Pa) o sensor ultrasônico dispara um comando para o sistema e o cronômetro é iniciado até que o mesmo seja colocado na segunda prateleira(Pb). Ao chegar na "Pb", o segundo sensor dispara um comando para parar o crônometro.
+O projeto consiste em utilizar a empilhadeira de controle remoto para retirar o palete de uma prateleira(Pa) e levá-lo a outra(Pb). Quando retirado o palete da primeira prateleira(Pa) o sensor ultrasônico dispara um comando para o sistema e o cronômetro é iniciado até que o palete seja colocado na segunda prateleira(Pb). Ao chegar na "Pb", o segundo sensor dispara um comando para parar o crônometro.
 É realizado um pré-cadastro para que os participantes tenham seus nomes rankeados pelo menor tempo.
 
                                      
